@@ -1,0 +1,15 @@
+mk_responsiveslider_index:
+  path: mk_responsiveslider/index
+  methods: [GET, POST]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::index'
+    _legacy_controller: SlideController
+    _legacy_link: SlideController
+
+mk_responsiveslider_add:
+  path: mk_responsiveslider/add
+  methods: [GET, POST]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::add'
+    _legacy_controller: SlideController
+    _legacy_link: SlideController

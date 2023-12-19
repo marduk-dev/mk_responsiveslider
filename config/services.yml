@@ -1,0 +1,84 @@
+services:
+  _defaults:
+    public: true
+
+  marduk.module.mk_responsiveslider.repository.slides:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository'
+  # prestashop.module.demoextendsymfonyform.repository.supplier_extra_image_repository:
+  #   class: PrestaShop\Module\DemoExtendSymfonyForm\Repository\SupplierExtraImageRepository
+    public: true
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide
+
+  marduk.module.mk_responsiveslider.form.slides.data_provider:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Form\SlideDataProvider'
+    arguments:
+      - '@marduk.module.mk_responsiveslider.repository.slides'
+
+  marduk.module.mk_responsiveslider.form.slides.type:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Form\SlideFormType'
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  marduk.module.mk_responsiveslider.form.slides.uploader:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Uploader\MkResponsiveSlideUploader'
+    arguments:
+      - '@marduk.module.mk_responsiveslider.repository.slides'
+
+  marduk.module.mk_responsiveslider.form.slides.form_builder:
+    class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
+    factory: 'prestashop.core.form.builder.form_builder_factory:create'
+    arguments:
+      - 'marduk.module.mk_responsiveslider.form.slides.type'
+      - '@marduk.module.mk_responsiveslider.form.slides.data_provider'
+
+  marduk.module.mk_responsiveslider.form.slides.form_handler:
+    class: 'PrestaShop\PrestaShop\Core\Form\Handler'
+    arguments:
+      - '@form.factory'
+      - '@prestashop.core.hook.dispatcher'
+      - '@marduk.module.mk_responsiveslider.form.slides.data_provider'
+      - 'marduk.module.mk_responsiveslider.form.slides.type'
+      - 'SlideEdit'
+      - 'index'
+  
+  marduk.module.mk_responsiveslider.controller.slides:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Controller\SlideController'
+    arguments:
+      - '@marduk.module.mk_responsiveslider.repository.slides'
+  
+  # marduk.module.product_creation_edit.form.type.configuration_form:
+  #   class: 'Marduk\Module\ProductCreationEdit\Form\ProductCreationEditFormType'
+  #   parent: 'form.type.translatable.aware'
+  #   public: true
+  #   tags:
+  #     - { name: form.type }
+
+  # marduk.module.product_creation_edit.form.configuration_data:
+  #   class: Marduk\Module\ProductCreationEdit\Form\ProductCreationEditDataConfiguration
+  #   arguments:
+  #     - '@prestashop.adapter.legacy.configuration'
+
+  # marduk.module.product_creation_edit.form.configuration_provider:
+  #   class: 'Marduk\Module\ProductCreationEdit\Form\ProductCreationEditDataProvider'
+  #   arguments:
+  #     - '@marduk.module.product_creation_edit.form.configuration_data'
+
+  # marduk.module.product_creation_edit.form.configuration_handler:
+  #   class: 'PrestaShop\PrestaShop\Core\Form\Handler'
+  #   arguments:
+  #     - '@form.factory'
+  #     - '@prestashop.core.hook.dispatcher'
+  #     - '@marduk.module.product_creation_edit.form.configuration_provider'
+  #     - 'Marduk\Module\ProductCreationEdit\Form\ProductCreationEditFormType'
+  #     - 'ProductCreationEdit'
+  #     - 'index'
+
+  # marduk.module.product_creation_edit.controller.cloning_updater:
+  #   class: 'Marduk\Module\ProductCreationEdit\Controller\CloningUpdater'
+  #   arguments:
+  #     - '@PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository'
+  #     - '@marduk.module.product_creation_edit.form.configuration_data'
