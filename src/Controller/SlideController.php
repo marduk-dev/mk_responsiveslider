@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Marduk\Module\Mk_ResponsiveSlider\Controller;
 
+use Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide;
 use Marduk\Module\Mk_ResponsiveSlider\Form\SlideDataProvider;
 use Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository;
 use PrestaShop\PrestaShop\Core\Form\Handler;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Marduk\Module\Mk_ResponsiveSlider\Helpers\FileHelper;
 
 class SlideController extends FrameworkBundleAdminController
 {
@@ -24,13 +26,23 @@ class SlideController extends FrameworkBundleAdminController
     $this->dataProvider = $dataProvider;
 	}
 
-  public function index(Request $request): Response
+  public function index(): Response
   {
     return $this->render('@Modules/mk_responsiveslider/views/templates/admin/index.html.twig', [
       'layoutTitle' => 'Mk_ResponsiveSlider :: slides index',
-      'slides' => $this->repository->findAll(),
-      'addUrl' => $this->generateUrl('mk_responsiveslider_add')
+      'slides' => array_map(array($this, 'slideData'), $this->repository->findAll()),
+      'max_position' => $this->repository->getNextPosition() - 1,
     ]);
+  }
+
+  private function slideData(MkResponsiveSlide $slide): array {
+    return [
+      'id' => $slide->getId(),
+      'title' => $slide->getTitle(),
+      'position' => $slide->getPosition(),
+      'enabled' => $slide->isEnabled(),
+      'img' => FileHelper::getSlideUrl($slide->getDesktopImageName()),
+    ];
   }
 
   public function add(Request $request): Response
@@ -81,6 +93,32 @@ class SlideController extends FrameworkBundleAdminController
     return $this->render('@Modules/mk_responsiveslider/views/templates/admin/form.html.twig', [
       'slideForm' => $slideForm->createView()
     ]);
+  }
+
+  public function enable(int $slideId): Response
+  {
+    $slide = $this->repository->get($slideId);
+    if ($slide) {
+      $slide->enable();
+      $this->repository->set($slide);
+    }
+    return $this->redirectToRoute('mk_responsiveslider_index');
+  }
+
+  public function disable(int $slideId): Response
+  {
+    $slide = $this->repository->get($slideId);
+    if ($slide) {
+      $slide->disable();
+      $this->repository->set($slide);
+    }
+    return $this->redirectToRoute('mk_responsiveslider_index');
+  }
+
+  public function delete(int $slideId): Response
+  {
+    $this->repository->delete($slideId);
+    return $this->redirectToRoute('mk_responsiveslider_index');
   }
 
 }

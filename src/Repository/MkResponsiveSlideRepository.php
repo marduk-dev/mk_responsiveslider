@@ -26,6 +26,21 @@ class MkResponsiveSlideRepository extends EntityRepository
 
   public function getNextPosition(): int
   {
-    return $this->getEntityManager()->createQueryBuilder()->select('max(s.id) + 1')->from('Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide', 's')->getQuery()->getSingleScalarResult() ?? 1;
+    return $this->getEntityManager()
+        ->createQueryBuilder()
+        ->select('max(s.id) + 1')
+        ->from('Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide', 's')
+        ->getQuery()
+        ->getSingleScalarResult() ?? 1;
+  }
+
+  public function delete(int $slideId): void {
+    $this->getEntityManager()
+        ->createQueryBuilder()
+        ->delete('Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide', 's')
+        ->where('s.id = :slide_id')
+        ->setParameter('slide_id', $slideId)
+        ->getQuery()
+        ->execute();
   }
 }

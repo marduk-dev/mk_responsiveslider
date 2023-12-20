@@ -6,16 +6,33 @@
       <i class="material-icons">slideshow</i> {{ 'List of all slides'|trans({}, 'Modules.Mk_ResponsiveSlider.Admin') }}
     </h3>
     <div class="card-body">
-      <div class="form-wrapper">
+      <div class="form-wrapper container" id="mk_slides">
         {% for slide in slides %}
-          <div>{{ slide.getTitle() }}</div>
-          <a href="{{ url('mk_responsiveslider_edit', {'slideId': slide.getId()}) }}">edit</a>
+          <div id="slide_{{ slide.id }}" class="slide row mt-2 pb-2 border-bottom">
+            <div class="col-1" data-value="{{ slide.position }}">
+              <a class="btn btn-info m-1{{ slide.position <= 1 ? ' disabled' : '' }}"><i class="material-icons">arrow_circle_up</i></a>
+              <a class="btn btn-info m-1{{ slide.position >= max_position ? ' disabled' : '' }}""><i class="material-icons">arrow_circle_down</i></a>
+              {% if slide.enabled %}
+              <a class="btn btn-success m-1" href="{{ url('mk_responsiveslider_disable', {'slideId': slide.id}) }}"><i class="material-icons">visibility</i></a>
+              {% else %}
+              <a class="btn btn-warning m-1"href="{{ url('mk_responsiveslider_enable', {'slideId': slide.id}) }}"><i class="material-icons">visibility_off</i></a>
+              {% endif %}
+            </div>
+            <div class="col-4"><img style="max-height: 20em; max-width: 100%;" src="{{ slide.img }}"</img></div>
+            <div class="col">{{ slide.title }}</div>
+            <div class="col-auto">
+              <div class="btn-group-action">
+                <a class="btn btn-primary" href="{{ url('mk_responsiveslider_edit', {'slideId': slide.id}) }}"><i class="material-icons">edit</i>edit</a>
+                <a class="btn btn-danger" href="{{ url('mk_responsiveslider_delete', {'slideId': slide.id}) }}"><i class="material-icons">delete</i>delete</a>
+              </div>
+            </div>
+          </div>
         {% endfor %}
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-end">
-        <a class="btn btn-primary float-right" id="add-button" href="{{ addUrl }}">
+        <a class="btn btn-primary float-right" id="add-button" href="{{ url('mk_responsiveslider_add') }}">
           {{ 'Add' | trans({}, 'Admin.Actions') }}
         </a>
       </div>

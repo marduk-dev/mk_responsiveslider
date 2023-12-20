@@ -1,23 +1,38 @@
 mk_responsiveslider_index:
   path: mk_responsiveslider/index
-  methods: [GET, POST]
+  methods: [GET]
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::index'
     _legacy_controller: SlideController_Index
     _legacy_link: SlideController_Index
 
 mk_responsiveslider_add:
-  path: mk_responsiveslider/add
+  path: mk_responsiveslider/new_slide
   methods: [GET, POST]
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::add'
-    _legacy_controller: SlideController_Add
-    _legacy_link: SlideController_Add
 
 mk_responsiveslider_edit:
-  path: mk_responsiveslider/edit
+  path: mk_responsiveslider/slide/{slideId}/edit
   methods: [GET, POST]
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::edit'
-    _legacy_controller: SlideController_Edit
-    _legacy_link: SlideController_Edit
+
+mk_responsiveslider_enable:
+  path: mk_responsiveslider/slide/{slideId}/enable
+  methods: [GET]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::enable'
+
+mk_responsiveslider_disable:
+  path: mk_responsiveslider/slide/{slideId}/disable
+  methods: [GET]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::disable'
+
+mk_responsiveslider_delete:
+  path: mk_responsiveslider/slide/{slideId}/delete
+  methods: [GET]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::delete'
+
