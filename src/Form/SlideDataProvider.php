@@ -96,7 +96,7 @@ final class SlideDataProvider implements FormDataProviderInterface
     $mobileImage = $data[SlideFields::MobileImage];
     if (!is_null($mobileImage)) {
       if (!is_null($this->slideId)) {
-        array_push($imagesToDelete, $slide->getDesktopImageName());
+        array_push($imagesToDelete, $slide->getMobileImageName());
       }
       $slide->setMobileImageName($this->uploadImage($mobileImage));
     }
