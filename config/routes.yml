@@ -36,3 +36,15 @@ mk_responsiveslider_delete:
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::delete'
 
+mk_responsiveslider_up:
+  path: mk_responsiveslider/slide/{slideId}/up
+  methods: [GET]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::moveUp'
+
+mk_responsiveslider_down:
+  path: mk_responsiveslider/slide/{slideId}/down
+  methods: [GET]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::moveDown'
+

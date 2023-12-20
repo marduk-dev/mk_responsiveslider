@@ -30,7 +30,7 @@ class SlideController extends FrameworkBundleAdminController
   {
     return $this->render('@Modules/mk_responsiveslider/views/templates/admin/index.html.twig', [
       'layoutTitle' => 'Mk_ResponsiveSlider :: slides index',
-      'slides' => array_map(array($this, 'slideData'), $this->repository->findAll()),
+      'slides' => array_map(array($this, 'slideData'), $this->repository->findBy([], ['position' => 'asc'])),
       'max_position' => $this->repository->getNextPosition() - 1,
     ]);
   }
@@ -118,6 +118,33 @@ class SlideController extends FrameworkBundleAdminController
   public function delete(int $slideId): Response
   {
     $this->repository->delete($slideId);
+    return $this->redirectToRoute('mk_responsiveslider_index');
+  }
+
+  private function move(int $slideId, int $delta) {
+    $slide = $this->repository->get($slideId);
+    if ($slide) {
+      $other = $this->repository->findOneBy(['position' => $slide->getPosition() + $delta]);
+      if ($other) {
+        $otherPos = $other->getPosition();
+        $other->setPosition($slide->getPosition());
+        $slide->setPosition($otherPos);
+
+        $this->repository->set($slide);
+        $this->repository->set($other);
+      }
+    }
+  }
+
+  public function moveUp(int $slideId): Response
+  {
+    $this->move($slideId, -1);
+    return $this->redirectToRoute('mk_responsiveslider_index');
+  }
+
+  public function moveDown(int $slideId): Response
+  {
+    $this->move($slideId, 1);
     return $this->redirectToRoute('mk_responsiveslider_index');
   }
 

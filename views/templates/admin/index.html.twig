@@ -10,8 +10,8 @@
         {% for slide in slides %}
           <div id="slide_{{ slide.id }}" class="slide row mt-2 pb-2 border-bottom">
             <div class="col-1" data-value="{{ slide.position }}">
-              <a class="btn btn-info mb-1{{ slide.position <= 1 ? ' disabled' : '' }}"><i class="material-icons">arrow_circle_up</i></a>
-              <a class="btn btn-info{{ slide.position >= max_position ? ' disabled' : '' }}""><i class="material-icons">arrow_circle_down</i></a>
+              <a class="btn btn-info mb-1{{ slide.position <= 1 ? ' disabled' : '' }}" href="{{ url('mk_responsiveslider_up', {'slideId': slide.id}) }}"><i class="material-icons">arrow_circle_up</i></a>
+              <a class="btn btn-info{{ slide.position >= max_position ? ' disabled' : '' }}" href="{{ url('mk_responsiveslider_down', {'slideId': slide.id}) }}"><i class="material-icons">arrow_circle_down</i></a>
               {% if slide.enabled %}
               <a class="btn btn-success mt-1" href="{{ url('mk_responsiveslider_disable', {'slideId': slide.id}) }}"><i class="material-icons">visibility</i></a>
               {% else %}
