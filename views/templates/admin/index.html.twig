@@ -1,23 +1,24 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %}
 
 {% block content %}
-  {{ form_start(slideList) }}
   <div class="card">
     <h3 class="card-header">
-      <i class="material-icons">settings</i> {{ 'Global module settings'|trans({}, 'Modules.ProductCreationEdit.Admin') }}
+      <i class="material-icons">slideshow</i> {{ 'List of all slides'|trans({}, 'Modules.Mk_ResponsiveSlider.Admin') }}
     </h3>
     <div class="card-body">
       <div class="form-wrapper">
-        <h1>here be dragons</h1>
+        {% for slide in slides %}
+          <div>{{ slide.getTitle() }}</div>
+          <a href="{{ url('mk_responsiveslider_edit', {'slideId': slide.getId()}) }}">edit</a>
+        {% endfor %}
       </div>
     </div>
     <div class="card-footer">
       <div class="d-flex justify-content-end">
-        <button class="btn btn-primary float-right" id="save-button">
+        <a class="btn btn-primary float-right" id="add-button" href="{{ addUrl }}">
           {{ 'Add' | trans({}, 'Admin.Actions') }}
-        </button>
+        </a>
       </div>
     </div>
-  </div>
-  {{ form_end(slideList) }}
+</div>
 {% endblock %}

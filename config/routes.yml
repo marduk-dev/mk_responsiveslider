@@ -3,13 +3,21 @@ mk_responsiveslider_index:
   methods: [GET, POST]
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::index'
-    _legacy_controller: SlideController
-    _legacy_link: SlideController
+    _legacy_controller: SlideController_Index
+    _legacy_link: SlideController_Index
 
 mk_responsiveslider_add:
   path: mk_responsiveslider/add
   methods: [GET, POST]
   defaults:
     _controller: 'marduk.module.mk_responsiveslider.controller.slides::add'
-    _legacy_controller: SlideController
-    _legacy_link: SlideController
+    _legacy_controller: SlideController_Add
+    _legacy_link: SlideController_Add
+
+mk_responsiveslider_edit:
+  path: mk_responsiveslider/edit
+  methods: [GET, POST]
+  defaults:
+    _controller: 'marduk.module.mk_responsiveslider.controller.slides::edit'
+    _legacy_controller: SlideController_Edit
+    _legacy_link: SlideController_Edit

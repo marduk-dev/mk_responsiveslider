@@ -32,7 +32,14 @@ class MkResponsiveSlide
      *
      * @ORM\Column(type="string")
      */
-    private $imageName;
+    private $desktopImageName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $mobileImageName;
 
     /**
      * @var string
@@ -83,17 +90,33 @@ class MkResponsiveSlide
     /**
      * @return string
      */
-    public function getImageName(): string
+    public function getDesktopImageName(): string
     {
-        return $this->imageName;
+        return $this->desktopImageName;
     }
 
     /**
      * @param string $imageName
      */
-    public function setImageName(string $imageName): void
+    public function setDesktopImageName(string $imageName): void
     {
-        $this->imageName = $imageName;
+        $this->desktopImageName = $imageName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobileImageName(): string
+    {
+        return $this->mobileImageName;
+    }
+
+    /**
+     * @param string $imageName
+     */
+    public function setMobileImageName(string $imageName): void
+    {
+        $this->mobileImageName = $imageName;
     }
 
     /**

@@ -14,7 +14,8 @@ class SqlQueries
       'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . static::SlideTableName . '` (
         `id_slide` int(11) NOT NULL AUTO_INCREMENT,
         `order_weight` int(11) NOT NULL,
-        `image_name` varchar(64) NOT NULL,
+        `desktop_image_name` varchar(64) NOT NULL,
+        `mobile_image_name` varchar(64) NOT NULL,
         `title` varchar(128) NOT NULL,
         `sub_title` varchar(128) NULL,
         PRIMARY KEY (`id_slide`)

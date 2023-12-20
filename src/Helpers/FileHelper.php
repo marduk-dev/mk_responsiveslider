@@ -20,7 +20,7 @@ class FileHelper
 
   public static function randomizeName(string $filename): string
   {
-    return static::uniqid("MK_SLIDE_") . static::getFileExtenstion($filename);
+    return static::uniqid("MK_SLIDE_") . '.' . static::getFileExtenstion($filename);
   }
 
   public static function uniqid(string $prefix = ''): string
@@ -35,9 +35,16 @@ class FileHelper
     return $prefix . substr(bin2hex($bytes), 0, 24);
   }
 
-  static function getSlidePath(MkResponsiveSlide $slide): string | false {
+  static function getDesktopSlidePath(MkResponsiveSlide $slide): string | false {
     if ($slide) {
-      return static::getSlideFilePath($slide->getImageName());
+      return static::getSlideFilePath($slide->getDesktopImageName());
+    }
+    return false;
+  }
+
+  static function getMobileSlidePath(MkResponsiveSlide $slide): string | false {
+    if ($slide) {
+      return static::getSlideFilePath($slide->getMobileImageName());
     }
     return false;
   }
@@ -45,4 +52,9 @@ class FileHelper
   static function getSlideFilePath(string $imageName): string {
     return _PS_SUPP_IMG_DIR_ . $imageName;
   }
+
+  static function getSlideUrl(string $imageName): string {
+    return '/img/su/' . $imageName;
+  }
+
 }

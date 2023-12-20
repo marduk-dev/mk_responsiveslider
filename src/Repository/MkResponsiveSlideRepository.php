@@ -26,7 +26,7 @@ class MkResponsiveSlideRepository extends EntityRepository
 
   public function updateSlider($id, $weight, $title, $subTitle)
   {
-    $slide = $this->findOneBy(['slide_id' => $id]);
+    $slide = $this->findOneBy(['id' => $id]);
     $slide->setWeight($weight);
     $slide->setTitle($title);
     $slide->setSubTitle($subTitle);
@@ -36,7 +36,10 @@ class MkResponsiveSlideRepository extends EntityRepository
 
   public function get($id): MkResponsiveSlide|null
   {
-    return $this->findOneBy(['slide_id' => $id]);
+    if (is_null($id)) {
+      return null;
+    }
+    return $this->findOneBy(['id' => $id]);
   }
 
   public function set(MkResponsiveSlide $slide)
@@ -58,12 +61,25 @@ class MkResponsiveSlideRepository extends EntityRepository
     }
   }
 
-  public function setImageName(int $id, string $originalName): string|false
+  public function setDesktopImageName(int $id, string $originalName): string|false
   {
     $slide = $this->get($id);
     if ($slide) {
       $imageName = FileHelper::randomizeName($originalName);
-      $slide->setImageName($imageName);
+      $slide->setDesktopImageName($imageName);
+      $this->set($slide);
+
+      return $imageName;
+    }
+    return false;
+  }
+
+  public function setMobileImageName(int $id, string $originalName): string|false
+  {
+    $slide = $this->get($id);
+    if ($slide) {
+      $imageName = FileHelper::randomizeName($originalName);
+      $slide->setMobileImageName($imageName);
       $this->set($slide);
 
       return $imageName;

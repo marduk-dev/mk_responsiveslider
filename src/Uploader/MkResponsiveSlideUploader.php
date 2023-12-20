@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Marduk\Module\Mk_ResponsiveSlider\Uploader;
 
 use Marduk\Module\Mk_ResponsiveSlider\Helpers\FileHelper;
-use Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository;
 use PrestaShop\PrestaShop\Core\Image\Exception\ImageOptimizationException;
 use PrestaShop\PrestaShop\Core\Image\Uploader\Exception\ImageUploadException;
 use PrestaShop\PrestaShop\Core\Image\Uploader\Exception\MemoryLimitException;
@@ -15,23 +14,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MkResponsiveSlideUploader implements ImageUploaderInterface
 {
-  private $mkResponsiveSlideRepository;
-
-  public function __construct(MkResponsiveSlideRepository $mkResponsiveSlideRepository)
-  {
-    $this->mkResponsiveSlideRepository = $mkResponsiveSlideRepository;
-  }
-
+  /**
+   * @param string $entityId
+   */
   public function upload($entityId, UploadedFile $image)
   {
     $this->checkImageIsAllowedForUpload($image);
     $tempImageName = $this->createTemporaryImage($image);
 
-    $this->deleteImage($entityId);
-    $originalImageName = $image->getClientOriginalName();
-    $imageName = $this->mkResponsiveSlideRepository->setImageName($entityId, $originalImageName);
-
-    $destination = FileHelper::getSlideFilePath($imageName);
+    $destination = FileHelper::getSlideFilePath($entityId);
     $this->uploadFromTemp($tempImageName, $destination);
   }
 
@@ -68,16 +59,9 @@ class MkResponsiveSlideUploader implements ImageUploaderInterface
     unlink($temporaryImageName);
   }
 
-  /**
-   * Deletes image
-   *
-   * @param $entityId
-   */
-  public function deleteImage($entityId)
-  {
-    $slide = $this->mkResponsiveSlideRepository->get($entityId);
-    $path = FileHelper::getSlidePath($slide);
-    if ($slide && file_exists($path)) {
+  public function deleteImage(string $imageName) {
+    $path = FileHelper::getSlideFilePath($imageName);
+    if (file_exists($path)) {
       unlink($path);
     }
   }

@@ -4,7 +4,7 @@
   {{ form_start(slideForm) }}
   <div class="card">
     <h3 class="card-header">
-      <i class="material-icons">settings</i> {{ 'Global module settings'|trans({}, 'Modules.ProductCreationEdit.Admin') }}
+      <i class="material-icons">image</i> {{ 'Slide edit'|trans({}, 'Modules.Mk_ResponsiveSlider.Admin') }}
     </h3>
     <div class="card-body">
       <div class="form-wrapper">
@@ -16,6 +16,9 @@
         <button class="btn btn-primary float-right" id="save-button">
           {{ 'Save'|trans({}, 'Admin.Actions') }}
         </button>
+        <a class="btn btn-secondary float-right ml-2" id="cancel-button" href="{{ url('mk_responsiveslider_index') }}">
+          {{ 'Cancel'|trans({}, 'Admin.Actions') }}
+        </a>
       </div>
     </div>
   </div>
