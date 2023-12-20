@@ -26,12 +26,13 @@ class MkResponsiveSlideRepository extends EntityRepository
 
   public function getNextPosition(): int
   {
-    return $this->getEntityManager()
+    $lastPos = $this->getEntityManager()
         ->createQueryBuilder()
-        ->select('max(s.id) + 1')
+        ->select('max(s.position)')
         ->from('Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide', 's')
         ->getQuery()
-        ->getSingleScalarResult() ?? 1;
+        ->getSingleScalarResult() ?? 0;
+    return $lastPos + 1;
   }
 
   public function delete(int $slideId): void {
