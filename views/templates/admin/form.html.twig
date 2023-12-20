@@ -1,5 +1,10 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('themes/new-theme/public/product' ~ rtl_suffix ~ '.css') }}" type="text/css" media="all">
+{% endblock %}
+
 {% block content %}
   {{ form_start(slideForm) }}
   <div class="card">
@@ -23,4 +28,10 @@
     </div>
   </div>
   {{ form_end(slideForm) }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+
+  <script src="{{ asset('themes/new-theme/public/product_edit.bundle.js') }}"></script>
 {% endblock %}

@@ -12,142 +12,189 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MkResponsiveSlide
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\Column(name="id_slide", type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+  /**
+   * @var int
+   *
+   * @ORM\Id
+   * @ORM\Column(name="id_slide", type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
 
+  /**
+   * @var bool
+   *
+   * @ORM\Column(name="is_enabled", type="boolean")
+   */
+  private $enabled = true;
 
-    /**
-     * @ORM\Column(name="order_weight", type="integer")
-     */
-    private $orderWeight;
+  /**
+   * @ORM\Column(type="integer")
+   */
+  private $position = -1;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    private $desktopImageName;
+  /**
+   * @var string
+   * 
+   * @ORM\Column(type="string")
+   */
+  private $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    private $mobileImageName;
+  /**
+   * @var string
+   * 
+   * @ORM\Column(name="sub_title", type="string")
+   */
+  private $subTitle;
 
-    /**
-     * @var string
-     * 
-     * @ORM\Column(type="string")
-     */
-    private $title;
+  /**
+   * @var string
+   *
+   * @ORM\Column(type="string")
+   */
+  private $url;
 
-    /**
-     * @var string
-     * 
-     * @ORM\Column(name="sub_title", type="string")
-     */
-    private $subTitle;
+  /**
+   * @var string
+   *
+   * @ORM\Column(type="string")
+   */
+  private $desktopImageName;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
+  /**
+   * @var string
+   *
+   * @ORM\Column(type="string")
+   */
+  private $mobileImageName;
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
+  /**
+   * @return int
+   */
+  public function getId(): int
+  {
+    return $this->id;
+  }
 
-    /**
-     * @return mixed
-     */
-    public function getOrderWeight()
-    {
-        return $this->orderWeight;
-    }
+  /**
+   * @param int $id
+   */
+  public function setId(int $id): void
+  {
+    $this->id = $id;
+  }
 
-    /**
-     * @param mixed $orderWeight
-     */
-    public function setOrderWeight($orderWeight): void
-    {
-        $this->orderWeight = $orderWeight;
-    }
+  /**
+   * @return bool
+   */
+  public function isEnabled(): bool
+  {
+    return $this->enabled;
+  }
 
-    /**
-     * @return string
-     */
-    public function getDesktopImageName(): string
-    {
-        return $this->desktopImageName;
-    }
+  public function enable(): void
+  {
+    $this->enabled = true;
+  }
 
-    /**
-     * @param string $imageName
-     */
-    public function setDesktopImageName(string $imageName): void
-    {
-        $this->desktopImageName = $imageName;
-    }
+  public function disable(): void
+  {
+    $this->enabled = false;
+  }
 
-    /**
-     * @return string
-     */
-    public function getMobileImageName(): string
-    {
-        return $this->mobileImageName;
-    }
+  /**
+   * @return int
+   */
+  public function getPosition()
+  {
+    return $this->position;
+  }
 
-    /**
-     * @param string $imageName
-     */
-    public function setMobileImageName(string $imageName): void
-    {
-        $this->mobileImageName = $imageName;
-    }
+  /**
+   * @param int $position
+   */
+  public function setPosition(int $position): void
+  {
+    $this->position = $position;
+  }
 
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
+  /**
+   * @return string
+   */
+  public function getUrl(): string|null
+  {
+    return $this->url;
+  }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle($title): void
-    {
-        $this->title = $title;
-    }
+  /**
+   * @param string $url
+   */
+  public function setUrl(string|null $url): void
+  {
+    $this->url = $url;
+  }
 
-    /**
-     * @return string
-     */
-    public function getSubTitle(): string
-    {
-        return $this->subTitle;
-    }
+  /**
+   * @return string
+   */
+  public function getDesktopImageName(): string
+  {
+    return $this->desktopImageName;
+  }
 
-    /**
-     * @param string $subTitle
-     */
-    public function setSubTitle($subTitle): void
-    {
-        $this->subTitle = $subTitle;
-    }
+  /**
+   * @param string $imageName
+   */
+  public function setDesktopImageName(string $imageName): void
+  {
+    $this->desktopImageName = $imageName;
+  }
+
+  /**
+   * @return string
+   */
+  public function getMobileImageName(): string
+  {
+    return $this->mobileImageName;
+  }
+
+  /**
+   * @param string $imageName
+   */
+  public function setMobileImageName(string $imageName): void
+  {
+    $this->mobileImageName = $imageName;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTitle(): string
+  {
+    return $this->title;
+  }
+
+  /**
+   * @param string $title
+   */
+  public function setTitle($title): void
+  {
+    $this->title = $title;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSubTitle(): string
+  {
+    return $this->subTitle;
+  }
+
+  /**
+   * @param string $subTitle
+   */
+  public function setSubTitle($subTitle): void
+  {
+    $this->subTitle = $subTitle;
+  }
 }
