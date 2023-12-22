@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    public: true
+
+  marduk.module.mk_responsiveslider.repository.slides:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository'
+    public: true
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide
+
+  marduk.module.mk_responsiveslider.presentation.slide:
+    class: 'Marduk\Module\Mk_ResponsiveSlider\Presentation\SlideView'
+    public: true
+    arguments:
+      - '@marduk.module.mk_responsiveslider.repository.slides'

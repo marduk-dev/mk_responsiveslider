@@ -4,45 +4,36 @@ declare(strict_types=1);
 
 namespace Marduk\Module\Mk_ResponsiveSlider\Controller;
 
-use Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide;
 use Marduk\Module\Mk_ResponsiveSlider\Form\SlideDataProvider;
+use Marduk\Module\Mk_ResponsiveSlider\Presentation\SlideView;
 use Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository;
 use PrestaShop\PrestaShop\Core\Form\Handler;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Marduk\Module\Mk_ResponsiveSlider\Helpers\FileHelper;
 
 class SlideController extends FrameworkBundleAdminController
 {
 	private MkResponsiveSlideRepository $repository;
   private Handler $formHandler;
   private SlideDataProvider $dataProvider;
+  private SlideView $slideView;
 
-	public function __construct(MkResponsiveSlideRepository $mkResponsiveSlideRepository, Handler $formHandler, SlideDataProvider $dataProvider)
+	public function __construct(MkResponsiveSlideRepository $mkResponsiveSlideRepository, Handler $formHandler, SlideDataProvider $dataProvider, SlideView $slideView)
 	{
 		$this->repository = $mkResponsiveSlideRepository;
     $this->formHandler = $formHandler;
     $this->dataProvider = $dataProvider;
+    $this->slideView = $slideView;
 	}
 
   public function index(): Response
   {
     return $this->render('@Modules/mk_responsiveslider/views/templates/admin/index.html.twig', [
       'layoutTitle' => 'Mk_ResponsiveSlider :: slides index',
-      'slides' => array_map(array($this, 'slideData'), $this->repository->findBy([], ['position' => 'asc'])),
+      'slides' => $this->slideView->all(),
       'max_position' => $this->repository->getNextPosition() - 1,
     ]);
-  }
-
-  private function slideData(MkResponsiveSlide $slide): array {
-    return [
-      'id' => $slide->getId(),
-      'title' => $slide->getTitle(),
-      'position' => $slide->getPosition(),
-      'enabled' => $slide->isEnabled(),
-      'img' => FileHelper::getSlideUrl($slide->getDesktopImageName()),
-    ];
   }
 
   public function add(Request $request): Response

@@ -12,10 +12,13 @@ if (file_exists($autoloadPath)) {
 }
 
 use Marduk\Module\Mk_ResponsiveSlider\Install\Installer;
+use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
-class Mk_ResponsiveSlider extends Module
+class Mk_ResponsiveSlider extends Module implements WidgetInterface
 {
-  public function __construct()
+  const templateFile = 'module:mk_responsiveslider/views/templates/hook/slider.tpl';
+
+  public function __construct()//SlideView $slideView)
   {
     $this->name = 'mk_responsiveslider';
     $this->tab = 'front_office_features';
@@ -56,6 +59,29 @@ class Mk_ResponsiveSlider extends Module
   {
     $route = $this->get('router')->generate('mk_responsiveslider_index');
     Tools::redirectAdmin($route);
+  }
+
+  public function renderWidget($hookName, array $configuration)
+  {
+    if (!$this->isCached(static::templateFile, $this->getCacheId())) {
+      $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+    }
+
+    return $this->fetch(static::templateFile, $this->getCacheId());
+  }
+  public function getWidgetVariables($hookName, array $configuration)
+  {
+    $slideView = $this->get('marduk.module.mk_responsiveslider.presentation.slide');
+
+    return [
+      'mk_slider' => [
+        'slider_id' => 'mk_slider',
+        'slides' => $slideView != null ? $slideView->allEnabled() : [],
+        'speed' => 3000,
+        'pause' => 'hover',
+        'wrap' => 'true',
+      ],
+    ];
   }
 
 }

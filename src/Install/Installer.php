@@ -46,6 +46,7 @@ class Installer
 	private function registerHooks(Module $module): bool
 	{
 		$hooks = [
+      'displayWrapperTopOnMainPage',
 			// 'actionSupplierFormBuilderModifier',
 			// 'actionAfterCreateSupplierFormHandler',
 			// 'actionAfterUpdateSupplierFormHandler',
