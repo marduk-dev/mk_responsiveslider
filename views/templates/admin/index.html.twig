@@ -22,8 +22,8 @@
             <div class="col">{{ slide.title }}</div>
             <div class="col-auto">
               <div class="btn-group-action">
-                <a class="btn btn-primary" href="{{ url('mk_responsiveslider_edit', {'slideId': slide.id}) }}"><i class="material-icons">edit</i>edit</a>
-                <a class="btn btn-danger" href="{{ url('mk_responsiveslider_delete', {'slideId': slide.id}) }}"><i class="material-icons">delete</i>delete</a>
+                <a class="btn btn-primary" href="{{ url('mk_responsiveslider_edit', {'slideId': slide.id}) }}"><i class="material-icons">edit</i>{{ 'Edit'|trans({}, 'Admin.Actions') }}</a>
+                <a class="btn btn-danger" href="{{ url('mk_responsiveslider_delete', {'slideId': slide.id}) }}"><i class="material-icons">delete</i>{{ 'Delete'|trans({}, 'Admin.Actions') }}</a>
               </div>
             </div>
           </div>
