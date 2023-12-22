@@ -18,7 +18,7 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 {
   const templateFile = 'module:mk_responsiveslider/views/templates/hook/slider.tpl';
 
-  public function __construct()//SlideView $slideView)
+  public function __construct()
   {
     $this->name = 'mk_responsiveslider';
     $this->tab = 'front_office_features';
@@ -84,4 +84,22 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
     ];
   }
 
+  public function isUsingNewTranslationSystem()
+  {
+    return true;
+  }
+
+  public function hookActionFrontControllerSetMedia()
+  {
+    if (true) {
+      $this->context->controller->registerStylesheet(
+        $this->name . '-style', 
+        'modules/' . $this->name . '/views/css/mk_responsiveslider.css',
+        [
+          'media' => 'all', 
+          'priority' => 150
+        ]
+      );
+    }
+  }
 }

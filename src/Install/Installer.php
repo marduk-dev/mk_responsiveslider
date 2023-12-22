@@ -46,10 +46,9 @@ class Installer
 	private function registerHooks(Module $module): bool
 	{
 		$hooks = [
+			'actionFrontControllerSetMedia',
       'displayWrapperTopOnMainPage',
-			// 'actionSupplierFormBuilderModifier',
-			// 'actionAfterCreateSupplierFormHandler',
-			// 'actionAfterUpdateSupplierFormHandler',
+			//'displayHome',
 		];
 
 		return (bool) $module->registerHook($hooks);
