@@ -185,7 +185,7 @@ class MkResponsiveSlide
   /**
    * @return string
    */
-  public function getDescription(): string
+  public function getDescription(): string | null
   {
     return $this->description;
   }
