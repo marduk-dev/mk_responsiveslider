@@ -28,7 +28,7 @@ final class SlideDataProvider implements FormDataProviderInterface
     return [
       SlideFields::Enabled => $slide->isEnabled(),
       SlideFields::Title => $slide->getTitle(),
-      SlideFields::SubTitle => $slide->getSubTitle(),
+      SlideFields::Description => $slide->getDescription(),
       SlideFields::Position => $slide->getPosition(),
       SlideFields::Url => $slide->getUrl(),
       SlideFields::DesktopImagePreview => FileHelper::getSlideUrl($slide->getDesktopImageName()),
@@ -82,7 +82,7 @@ final class SlideDataProvider implements FormDataProviderInterface
       $slide->disable();
     }
     $slide->setTitle($data[SlideFields::Title]);
-    $slide->setSubTitle($data[SlideFields::SubTitle]);
+    $slide->setDescription($data[SlideFields::Description]);
     $slide->setUrl($data[SlideFields::Url]);
 
     $desktopImage = $data[SlideFields::DesktopImage];

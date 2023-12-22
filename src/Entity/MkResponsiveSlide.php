@@ -43,9 +43,9 @@ class MkResponsiveSlide
   /**
    * @var string
    * 
-   * @ORM\Column(name="sub_title", type="string")
+   * @ORM\Column(type="string")
    */
-  private $subTitle;
+  private $description;
 
   /**
    * @var string
@@ -185,16 +185,16 @@ class MkResponsiveSlide
   /**
    * @return string
    */
-  public function getSubTitle(): string
+  public function getDescription(): string
   {
-    return $this->subTitle;
+    return $this->description;
   }
 
   /**
-   * @param string $subTitle
+   * @param string $description
    */
-  public function setSubTitle($subTitle): void
+  public function setDescription($description): void
   {
-    $this->subTitle = $subTitle;
+    $this->description = $description;
   }
 }

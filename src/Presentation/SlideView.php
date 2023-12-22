@@ -44,7 +44,7 @@ class SlideView {
       static::SlideTitle => $slide->getTitle(),
       static::SlidePosition => $slide->getPosition(),
       static::SlideIsEnabled => $slide->isEnabled(),
-      static::SlideDescription => $slide->getSubTitle(),
+      static::SlideDescription => $slide->getDescription(),
       static::SlideLegend => $slide->getTitle(),
       static::SlideDesktopImg => FileHelper::getSlideUrl($slide->getDesktopImageName()),
       static::SlideMobileImg => FileHelper::getSlideUrl($slide->getMobileImageName()),

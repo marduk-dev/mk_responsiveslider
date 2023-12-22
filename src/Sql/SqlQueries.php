@@ -17,7 +17,7 @@ class SqlQueries
         `is_enabled` bit(1) not null default(1),
         `position` smallint NOT NULL,
         `title` varchar(128) NOT NULL,
-        `sub_title` varchar(128) NULL,
+        `description` varchar(128) NULL,
         `url` varchar(128) NULL,
         `desktop_image_name` varchar(64) NOT NULL,
         `mobile_image_name` varchar(64) NOT NULL,

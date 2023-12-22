@@ -42,8 +42,8 @@ class SlideFormType extends TranslatorAwareType
           'material_design' => true,
         ],
       ])
-      ->add(SlideFields::SubTitle, TextType::class, [
-        'label' => $this->trans('Slide sub title', 'Modules.Mk_ResponsiveSlider.Admin'),
+      ->add(SlideFields::Description, TextType::class, [
+        'label' => $this->trans('Slide description', 'Modules.Mk_ResponsiveSlider.Admin'),
         'help' => $this->trans('This will be visible next to a title on the slide, a bit smaller', 'Modules.Mk_ResponsiveSlider.Admin'),
         'required' => false,
         'attr' => [
