@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="admin872t234t49nkh22vgzz" source-language="pl-PL" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="8bea32422d9a9b65ad226debeb96ee34">
+        <source>Marduk ResponsiveSlider</source>
+        <target>Marduk ResponsiveSlider</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="7a41749ca493028e15875a9686fc2396">
+        <source>A slider with support for both a desktop and a mobile views.</source>
+        <target>Posiada możliwość wyświetlania różnych zdjęć na różnych zdjęć na komputerze i urządzeniach mobilnych</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="876f23178c29dc2552c0b48bf23cd9bd">
+        <source>Are you sure you want to uninstall?</source>
+        <target>Jesteś pewien, że chcesz odinstalować?</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b48c9f44d692af3bd704d1c6f26c1aa1">
+        <source>Slide enabled</source>
+        <target>Slajd włączony</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="913bd9f1c4c9fac5e1dc43401df50191">
+        <source>If disabled it will not be visible at all</source>
+        <target>Stan wyłączony oznacza, że slajd jest całkowicie ukryty</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="61c1727eb4c54b859e250c2a76bb40c0">
+        <source>Slide title</source>
+        <target>Tytuł slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e4878bc71ebb6da99c5535e7577d1231">
+        <source>This will be visible as a title on the slide</source>
+        <target>Ten tekst będzie widoczny większą czcionką na slajdzie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="de0979c81aa1bed9cda301a1895c92b9">
+        <source>Slide description</source>
+        <target>Opis slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="eab4b1df929b7fc3b603a88f6cf37485">
+        <source>This will be visible next to a title on the slide, a bit smaller</source>
+        <target>Ten tekst będzie widoczny pod tytułem, mniejszą czcionką na slajdzie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5f0c7d61bd331d19422b2ac00cebfeb4">
+        <source>Slide url</source>
+        <target>Adres url slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="23618bed47441529614e485070dec95e">
+        <source>If the slide should be a link - this is the url</source>
+        <target>Jeżeli wprowadzony to slajd będzie klikalny</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ac26dc900b0e5759c57a8229015a2191">
+        <source>Desktop view image</source>
+        <target>Domyślne zdjęcie slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="6a37c399cfec3d19a2f61dd0ae0a27a1">
+        <source>Used on desktop screens, advised size: 3840x1620</source>
+        <target>Będzie użyte na większości urządzeń, sugerowana wielkość: 3840x1620</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="8859d188fb101482d585096c717ffd71">
+        <source>Mobile view image</source>
+        <target>Mobilne zdjęcie slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="2a6a28481a672585b16bf39a3ff38c78">
+        <source>Used on mobile screens, advised size 768x960</source>
+        <target>Będzie używane na mobilnych urządzeniach, sugerowana wielkość: 768x960</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="04920188347854f2e531a68ecee43a1c">
+        <source>List of all slides</source>
+        <target>Lista wszystkich slajdów</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="4c396ea47d23b6526b5c8ff62a07edfa">
+        <source>Slide edit</source>
+        <target>Edycja slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

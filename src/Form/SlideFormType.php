@@ -27,24 +27,24 @@ class SlideFormType extends TranslatorAwareType
   {
     $builder
       ->add(SlideFields::Enabled, SwitchType::class, [
-        'label' => $this->trans('Slide enabled', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('If disabled it will not be visible at all', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Slide enabled', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('If disabled it will not be visible at all', 'Modules.Mkresponsiveslider.Admin'),
         'required' => true,
         'attr' => [
           'material_design' => true,
         ],
       ])
       ->add(SlideFields::Title, TextType::class, [
-        'label' => $this->trans('Slide title', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('This will be visible as a title on the slide', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Slide title', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('This will be visible as a title on the slide', 'Modules.Mkresponsiveslider.Admin'),
         'required' => true,
         'attr' => [
           'material_design' => true,
         ],
       ])
       ->add(SlideFields::Description, TextType::class, [
-        'label' => $this->trans('Slide description', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('This will be visible next to a title on the slide, a bit smaller', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Slide description', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('This will be visible next to a title on the slide, a bit smaller', 'Modules.Mkresponsiveslider.Admin'),
         'required' => false,
         'attr' => [
           'material_design' => true,
@@ -52,16 +52,16 @@ class SlideFormType extends TranslatorAwareType
       ])
       ->add(SlideFields::Position, HiddenType::class, [])
       ->add(SlideFields::Url, TextType::class, [
-        'label' => $this->trans('Slide url', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('If the slide should be a link - this is the url', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Slide url', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('If the slide should be a link - this is the url', 'Modules.Mkresponsiveslider.Admin'),
         'required' => false,
         'attr' => [
           'material_design' => true,
         ],
       ])
       ->add(SlideFields::DesktopImage, FileType::class, [
-        'label' => $this->trans('Desktop view image', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('This image will be used on all desktop screens', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Desktop view image', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('Used on desktop screens, advised size: 3840x1620', 'Modules.Mkresponsiveslider.Admin'),
         'required' => is_null($this->dataProvider->slideId),
         'attr' => [
           'material_design' => true,
@@ -72,8 +72,8 @@ class SlideFormType extends TranslatorAwareType
         'form_theme' => '@Modules/mk_responsiveslider/views/templates/admin/preview.html.twig',
       ])
       ->add(SlideFields::MobileImage, FileType::class, [
-        'label' => $this->trans('Mobile view image', 'Modules.Mk_ResponsiveSlider.Admin'),
-        'help' => $this->trans('This image will be used on mobile screens', 'Modules.Mk_ResponsiveSlider.Admin'),
+        'label' => $this->trans('Mobile view image', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('Used on mobile screens, advised size 768x960', 'Modules.Mkresponsiveslider.Admin'),
         'required' => is_null($this->dataProvider->slideId),
         'attr' => [
           'material_design' => true,

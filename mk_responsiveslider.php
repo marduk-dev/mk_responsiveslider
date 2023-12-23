@@ -33,10 +33,10 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 
     parent::__construct();
 
-    $this->displayName = $this->trans('Marduk ResponsiveSlider', [], 'Modules.Mk_ResponsiveSlider.Admin');
-    $this->description = $this->trans('A slider with support for both a desktop and a mobile views.', [], 'Modules.Mk_ResponsiveSlider.Admin');
+    $this->displayName = $this->trans('Marduk ResponsiveSlider', [], 'Modules.Mkresponsiveslider.Admin');
+    $this->description = $this->trans('A slider with support for both a desktop and a mobile views.', [], 'Modules.Mkresponsiveslider.Admin');
 
-    $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Mk_ResponsiveSlider.Admin');
+    $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Mkresponsiveslider.Admin');
   }
 
   public function install()
@@ -63,12 +63,20 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 
   public function renderWidget($hookName, array $configuration)
   {
+    if ($this->shouldClearCache()) {
+      $this->clearCache();
+    }
     if (!$this->isCached(static::templateFile, $this->getCacheId())) {
       $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
     }
 
     return $this->fetch(static::templateFile, $this->getCacheId());
   }
+
+  private function shouldClearCache(): bool {
+    return true;
+  }
+
   public function getWidgetVariables($hookName, array $configuration)
   {
     $slideView = $this->get('marduk.module.mk_responsiveslider.presentation.slide');
@@ -102,4 +110,10 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
       );
     }
   }
+
+  public function clearCache()
+  {
+      $this->_clearCache(static::templateFile);
+  }
+
 }
