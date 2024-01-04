@@ -11,6 +11,7 @@ class SqlQueries
 
   public static function installQueries(): array
   {
+    return [];
     return [
       'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . static::SlideTableName . '` (
         `id_slide` int(11) NOT NULL AUTO_INCREMENT,
@@ -39,6 +40,7 @@ class SqlQueries
   }
   public static function uninstallQueries(): array
   {
+    return [];
     return [
       'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . static::SlideLangTableName . '`;',
       'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . static::SlideTableName . '`;',

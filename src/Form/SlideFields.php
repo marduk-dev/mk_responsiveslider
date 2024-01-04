@@ -9,7 +9,7 @@ class SlideFields
   public const Enabled = 'enabled';
   public const Title = 'title';
   public const Description = 'description';
-  public const Position = 'position';
+  //public const Position = 'position';
   public const Url = 'url';
   public const DesktopImage = 'desktop_image';
   public const DesktopImagePreview = 'desktop_image_preview';
