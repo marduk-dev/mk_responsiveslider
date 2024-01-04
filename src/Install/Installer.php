@@ -7,6 +7,7 @@ namespace Marduk\Module\Mk_ResponsiveSlider\Install;
 use Db;
 use Module;
 use Shop;
+use PrestaShopLogger;
 use Marduk\Module\Mk_ResponsiveSlider\Sql\SqlQueries;
 
 class Installer
@@ -35,16 +36,19 @@ class Installer
 
 	private function installDatabase(): bool
 	{
+    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....databases');
 		return $this->executeQueries(SqlQueries::installQueries());
 	}
 
 	private function uninstallDatabase(): bool
 	{
+    PrestaShopLogger::addLog('Uninstalling Modules.Mkresponsiveslider....databases');
 		return $this->executeQueries(SqlQueries::uninstallQueries());
 	}
 
 	private function registerHooks(Module $module): bool
 	{
+    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....hooks');
 		$hooks = [
 			'actionFrontControllerSetMedia',
       'displayWrapperTopOnMainPage',
@@ -58,6 +62,7 @@ class Installer
 	{
 		foreach ($queries as $query) {
 			if (!Db::getInstance()->execute($query)) {
+        PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....query failed: ' . $query);
 				return false;
 			}
 		}

@@ -41,6 +41,7 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 
   public function install()
   {
+    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....');
     $installer = new Installer();
 
     return parent::install()
