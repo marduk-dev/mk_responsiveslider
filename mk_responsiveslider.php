@@ -20,8 +20,6 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 
   public function __construct()
   {
-    parent::__construct();
-
     $this->name = 'mk_responsiveslider';
     $this->tab = 'front_office_features';
     $this->version = '1.0.0';
@@ -33,6 +31,8 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
     ];
     $this->bootstrap = true;
 
+    parent::__construct();
+
     $this->displayName = $this->trans('Marduk ResponsiveSlider', [], 'Modules.Mkresponsiveslider.Admin');
     $this->description = $this->trans('A slider with support for both a desktop and a mobile views.', [], 'Modules.Mkresponsiveslider.Admin');
 
@@ -41,7 +41,6 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
 
   public function install()
   {
-    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....');
     $installer = new Installer();
 
     return parent::install()

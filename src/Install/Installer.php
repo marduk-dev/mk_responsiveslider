@@ -31,24 +31,22 @@ class Installer
 
 	public function uninstall(): bool
 	{
-		return $this->uninstallDatabase();
+		$this->uninstallDatabase();
+    return true;
 	}
 
 	private function installDatabase(): bool
 	{
-    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....databases');
 		return $this->executeQueries(SqlQueries::installQueries());
 	}
 
 	private function uninstallDatabase(): bool
 	{
-    PrestaShopLogger::addLog('Uninstalling Modules.Mkresponsiveslider....databases');
 		return $this->executeQueries(SqlQueries::uninstallQueries());
 	}
 
 	private function registerHooks(Module $module): bool
 	{
-    PrestaShopLogger::addLog('Installing Modules.Mkresponsiveslider....hooks');
 		$hooks = [
 			'actionFrontControllerSetMedia',
       'displayWrapperTopOnMainPage',
