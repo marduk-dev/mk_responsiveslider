@@ -47,24 +47,54 @@
         <target>Ten tekst będzie widoczny pod tytułem, mniejszą czcionką na slajdzie</target>
         <note>Line: </note>
       </trans-unit>
+      <trans-unit id="a2da4cffe1a8deee2d6ff5a7e4b7b29b">
+        <source>Should slide contain text on it?</source>
+        <target>Czy tytuł i opis mają się wyświetlać?</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b72dd68846c36a4fb8e8433cc48f9307">
+        <source>If disabled both Title and Description will not be shown on a slide</source>
+        <target>Gdy wyłączone żaden tekst nie pokaże się na slajdzie</target>
+        <note>Line: </note>
+      </trans-unit>
       <trans-unit id="5f0c7d61bd331d19422b2ac00cebfeb4">
         <source>Slide url</source>
         <target>Adres url slajdu</target>
         <note>Line: </note>
       </trans-unit>
-      <trans-unit id="23618bed47441529614e485070dec95e">
-        <source>If the slide should be a link - this is the url</source>
-        <target>Jeżeli wprowadzony to slajd będzie klikalny</target>
+      <trans-unit id="e39ec512a1af380b16928d82c410a328">
+        <source>If the slide should be a link - this will be the url</source>
+        <target>Adres przekierowania po kliknięciu na slajd</target>
         <note>Line: </note>
       </trans-unit>
-      <trans-unit id="ac26dc900b0e5759c57a8229015a2191">
-        <source>Desktop view image</source>
-        <target>Domyślne zdjęcie slajdu</target>
+      <trans-unit id="fe9232182e02529ecd13340df11b6cf4">
+        <source>Url to the desktop version slide image</source>
+        <target>Adres obrazka slajdu</target>
         <note>Line: </note>
       </trans-unit>
-      <trans-unit id="6a37c399cfec3d19a2f61dd0ae0a27a1">
-        <source>Used on desktop screens, advised size: 3840x1620</source>
-        <target>Będzie użyte na większości urządzeń, sugerowana wielkość: 3840x1620</target>
+      <trans-unit id="42397802614a6f20889c2d3c33b20213">
+        <source>Used on desktop screens</source>
+        <target>Używany na wszystkich ekranach poza mobilnymi</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="82bd7f20e5092693dd055c276f4bc7b0">
+        <source>Upload desktop slide image</source>
+        <target>Załaduj obrazek slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ef9e523d0e649eb9bcea0bd0fabaa502">
+        <source>It will override the desktop image url, advised size: 3840x1620</source>
+        <target>Załadowanie zdjęcia nadpisze adres obrazka slajdu, zalecany rozmiar pliku to 3840x1620</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="982b68ecb3b3acecd204aef9b596a930">
+        <source>Url to the mobile version slide image</source>
+        <target>Adres obrazka do mobilnej wersji slajdu</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e02cf871a45dbf592f92e30b69f4bbc3">
+        <source>Used on mobile screens</source>
+        <target>Używany na ekranach mobilnych</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="8859d188fb101482d585096c717ffd71">
