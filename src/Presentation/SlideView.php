@@ -11,6 +11,7 @@ use Marduk\Module\Mk_ResponsiveSlider\Helpers\FileHelper;
 class SlideView {
 
   const SlideId = 'id';
+  const SlideTextVisible = 'is_text_visible';
   const SlideTitle = 'title';
   const SlideDescription = 'description';
   const SlidePosition = 'position';
@@ -41,13 +42,14 @@ class SlideView {
   {
     return [
       static::SlideId => $slide->getId(),
+      static::SlideTextVisible => $slide->isTextVisible(),
       static::SlideTitle => $slide->getTitle(),
       static::SlidePosition => $slide->getPosition(),
       static::SlideIsEnabled => $slide->isEnabled(),
       static::SlideDescription => $slide->getDescription(),
       static::SlideLegend => $slide->getTitle(),
-      static::SlideDesktopImg => FileHelper::getSlideUrl($slide->getDesktopImageName()),
-      static::SlideMobileImg => FileHelper::getSlideUrl($slide->getMobileImageName()),
+      static::SlideDesktopImg => $slide->getDesktopImageUrl(),
+      static::SlideMobileImg => $slide->getMobileImageUrl(),
     ];
   }
 }

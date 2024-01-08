@@ -22,7 +22,7 @@ class Mk_ResponsiveSlider extends Module implements WidgetInterface
   {
     $this->name = 'mk_responsiveslider';
     $this->tab = 'front_office_features';
-    $this->version = '1.0.0';
+    $this->version = '1.1.0';
     $this->author = 'Marduk';
     $this->need_instance = 0;
     $this->ps_versions_compliancy = [

@@ -11,7 +11,7 @@
       {if !empty($slide.url)}<a href="{$slide.url}">{/if}
         <img src="{$slide.desktop_img}" class="d-block w-100 desktop" alt="{$slide.legend|escape}" loading="lazy">
         <img src="{$slide.mobile_img}" class="d-block w-100 mobile" alt="{$slide.legend|escape}" loading="lazy">
-        {if $slide.title || $slide.description}
+        {if ($slide.is_text_visible) && ($slide.title || $slide.description)}
         <div class="carousel-caption d-md-block">
           <h5>{$slide.title}</h5>
           <p>{$slide.description nofilter}</p>

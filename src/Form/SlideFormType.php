@@ -10,7 +10,7 @@ use PrestaShopBundle\Form\Admin\Type\SwitchType;
 use PrestaShopBundle\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class SlideFormType extends TranslatorAwareType
@@ -52,29 +52,33 @@ class SlideFormType extends TranslatorAwareType
           'material_design' => true,
         ],
       ])
-      ->add(SlideFields::DesktopImage, EnumType::class, [
-        'class' => SlideImage::class,
-        'choice_label' => fn (SlideImage $slideImage): string => $slideImage->getReadable($this->translator),
-        'label' => $this->trans('Slide url', 'Modules.Mkresponsiveslider.Admin'),
-        'help' => $this->trans('If the slide should be a link - this is the url', 'Modules.Mkresponsiveslider.Admin'),
+      ->add(SlideFields::TextVisible, SwitchType::class, [
+        'label' => $this->trans('Should slide contain text on it?', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('If disabled both Title and Description will not be shown on a slide', 'Modules.Mkresponsiveslider.Admin'),
         'required' => false,
         'attr' => [
           'material_design' => true,
         ],
       ])
-      //->add(SlideFields::Position, HiddenType::class, [])
-      ->add(SlideFields::Url, TextType::class, [
+      ->add(SlideFields::LinkUrl, UrlType::class, [
         'label' => $this->trans('Slide url', 'Modules.Mkresponsiveslider.Admin'),
-        'help' => $this->trans('If the slide should be a link - this is the url', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('If the slide should be a link - this will be the url', 'Modules.Mkresponsiveslider.Admin'),
         'required' => false,
         'attr' => [
           'material_design' => true,
         ],
       ])
-      ->add(SlideFields::DesktopImage, FileType::class, [
-        'label' => $this->trans('Desktop view image', 'Modules.Mkresponsiveslider.Admin'),
-        'help' => $this->trans('Used on desktop screens, advised size: 3840x1620', 'Modules.Mkresponsiveslider.Admin'),
-        'required' => is_null($this->dataProvider->slideId),
+      ->add(SlideFields::DesktopImageUrl, UrlType::class, [
+        'label' => $this->trans('Url to the desktop version slide image', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('Used on desktop screens', 'Modules.Mkresponsiveslider.Admin'),
+        'attr' => [
+          'material_design' => true,
+        ],
+      ])
+      ->add(SlideFields::DesktopImageUpload, FileType::class, [
+        'label' => $this->trans('Upload desktop slide image', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('It will override the desktop image url, advised size: 3840x1620', 'Modules.Mkresponsiveslider.Admin'),
+        'required' => false,
         'attr' => [
           'material_design' => true,
         ],
@@ -83,10 +87,17 @@ class SlideFormType extends TranslatorAwareType
         'label' => false,
         'form_theme' => '@Modules/mk_responsiveslider/views/templates/admin/preview.html.twig',
       ])
-      ->add(SlideFields::MobileImage, FileType::class, [
+      ->add(SlideFields::MobileImageUrl, UrlType::class, [
+        'label' => $this->trans('Url to the mobile version slide image', 'Modules.Mkresponsiveslider.Admin'),
+        'help' => $this->trans('Used on mobile screens', 'Modules.Mkresponsiveslider.Admin'),
+        'attr' => [
+          'material_design' => true,
+        ],
+      ])
+      ->add(SlideFields::MobileImageUpload, FileType::class, [
         'label' => $this->trans('Mobile view image', 'Modules.Mkresponsiveslider.Admin'),
         'help' => $this->trans('Used on mobile screens, advised size 768x960', 'Modules.Mkresponsiveslider.Admin'),
-        'required' => is_null($this->dataProvider->slideId),
+        'required' => false,
         'attr' => [
           'material_design' => true,
         ],

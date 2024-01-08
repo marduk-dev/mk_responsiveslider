@@ -29,6 +29,10 @@ class Installer
 		return true;
 	}
 
+  public function upgrade_1_1(): bool {
+    return $this->executeQueries(SqlQueries::upgrade1_1());
+  }
+
 	public function uninstall(): bool
 	{
 		$this->uninstallDatabase();
@@ -49,8 +53,7 @@ class Installer
 	{
 		$hooks = [
 			'actionFrontControllerSetMedia',
-      'displayWrapperTopOnMainPage',
-			//'displayHome',
+			'displayHome',
 		];
 
 		return (bool) $module->registerHook($hooks);

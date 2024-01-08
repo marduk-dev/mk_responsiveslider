@@ -29,10 +29,12 @@ final class SlideDataProvider implements FormDataProviderInterface
       SlideFields::Enabled => $slide->isEnabled(),
       SlideFields::Title => $slide->getTitle(),
       SlideFields::Description => $slide->getDescription(),
-      SlideFields::Position => $slide->getPosition(),
-      SlideFields::Url => $slide->getUrl(),
-      SlideFields::DesktopImagePreview => FileHelper::getSlideUrl($slide->getDesktopImageName()),
-      SlideFields::MobileImagePreview => FileHelper::getSlideUrl($slide->getMobileImageName()),
+      SlideFields::TextVisible => $slide->isTextVisible(),
+      SlideFields::LinkUrl => $slide->getLinkUrl(),
+      SlideFields::DesktopImageUrl => $slide->getDesktopImageUrl(),
+      SlideFields::DesktopImagePreview => $slide->getDesktopImageUrl(),
+      SlideFields::MobileImageUrl => $slide->getMobileImageUrl(),
+      SlideFields::MobileImagePreview => $slide->getMobileImageUrl(),
     ];
   }
 
@@ -69,43 +71,39 @@ final class SlideDataProvider implements FormDataProviderInterface
 
   public function setData(array $data): array
   {
-    $imagesToDelete = [];
     $slide = $this->loadSlide(); 
 
     if (is_null($slide)) {
       throw new PrestaShopObjectNotFoundException("Slide was removed by someone else.");
     }
 
-    if ($data[SlideFields::Enabled]) {
-      $slide->enable();
-    } else {
-      $slide->disable();
-    }
+    $data[SlideFields::Enabled]
+      ? $slide->enable()
+      : $slide->disable();
     $slide->setTitle($data[SlideFields::Title]);
     $slide->setDescription($data[SlideFields::Description]);
-    $slide->setUrl($data[SlideFields::Url]);
+    $slide->setLinkUrl($data[SlideFields::LinkUrl]);
+    $slide->setDesktopImageUrl($data[SlideFields::DesktopImageUrl]);
+    $slide->setMobileImageUrl($data[SlideFields::MobileImageUrl]);
+    $data[SlideFields::TextVisible]
+      ? $slide->showText()
+      : $slide->hideText();
 
-    $desktopImage = $data[SlideFields::DesktopImage];
+    $desktopImage = $data[SlideFields::DesktopImageUpload];
     if (!is_null($desktopImage)) {
-      if (!is_null($this->slideId)) {
-        array_push($imagesToDelete, $slide->getDesktopImageName());
-      }
-      $slide->setDesktopImageName($this->uploadImage($desktopImage));
+      $name = $this->uploadImage($desktopImage);
+      $url = FileHelper::getSlideUrl($name);
+      $slide->setDesktopImageUrl($url);
     }
 
-    $mobileImage = $data[SlideFields::MobileImage];
+    $mobileImage = $data[SlideFields::MobileImageUpload];
     if (!is_null($mobileImage)) {
-      if (!is_null($this->slideId)) {
-        array_push($imagesToDelete, $slide->getMobileImageName());
-      }
-      $slide->setMobileImageName($this->uploadImage($mobileImage));
+      $name = $this->uploadImage($mobileImage);
+      $url = FileHelper::getSlideUrl($name);
+      $slide->setMobileImageUrl($url);
     }
 
     $this->repository->set($slide);
-
-    foreach ($imagesToDelete as $image) {
-      $this->uploader->deleteImage($image);
-    }
 
     $this->slideId = $slide->getId();
 

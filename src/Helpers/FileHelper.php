@@ -35,20 +35,6 @@ class FileHelper
     return $prefix . substr(bin2hex($bytes), 0, 24);
   }
 
-  static function getDesktopSlidePath(MkResponsiveSlide $slide): string | false {
-    if ($slide) {
-      return static::getSlideFilePath($slide->getDesktopImageName());
-    }
-    return false;
-  }
-
-  static function getMobileSlidePath(MkResponsiveSlide $slide): string | false {
-    if ($slide) {
-      return static::getSlideFilePath($slide->getMobileImageName());
-    }
-    return false;
-  }
-
   static function getSlideFilePath(string $imageName): string {
     return _PS_SUPP_IMG_DIR_ . $imageName;
   }

@@ -50,23 +50,30 @@ class MkResponsiveSlide
   /**
    * @var string
    *
-   * @ORM\Column(type="string")
+   * @ORM\Column(name="link_url", type="string")
    */
-  private $url;
+  private $linkUrl;
 
   /**
    * @var string
    *
-   * @ORM\Column(type="string")
+   * @ORM\Column(name="desktop_image_url", type="string")
    */
-  private $desktopImageName;
+  private $desktopImageUrl;
 
   /**
    * @var string
    *
-   * @ORM\Column(type="string")
+   * @ORM\Column(name="mobile_image_url", type="string")
    */
-  private $mobileImageName;
+  private $mobileImageUrl;
+
+  /**
+   * @var bool
+   *
+   * @ORM\Column(name="is_text_visible", type="boolean")
+   */
+  private $textVisible;
 
   /**
    * @return int
@@ -121,49 +128,49 @@ class MkResponsiveSlide
   /**
    * @return string
    */
-  public function getUrl(): string|null
+  public function getLinkUrl(): string|null
   {
-    return $this->url;
+    return $this->linkUrl;
   }
 
   /**
    * @param string $url
    */
-  public function setUrl(string|null $url): void
+  public function setLinkUrl(string|null $linkUrl): void
   {
-    $this->url = $url;
+    $this->linkUrl = $linkUrl;
   }
 
   /**
    * @return string
    */
-  public function getDesktopImageName(): string
+  public function getDesktopImageUrl(): string
   {
-    return $this->desktopImageName;
+    return $this->desktopImageUrl;
   }
 
   /**
-   * @param string $imageName
+   * @param string $imageUrl
    */
-  public function setDesktopImageName(string $imageName): void
+  public function setDesktopImageUrl(string $imageUrl): void
   {
-    $this->desktopImageName = $imageName;
+    $this->desktopImageUrl = $imageUrl;
   }
 
   /**
    * @return string
    */
-  public function getMobileImageName(): string
+  public function getMobileImageUrl(): string
   {
-    return $this->mobileImageName;
+    return $this->mobileImageUrl;
   }
 
   /**
-   * @param string $imageName
+   * @param string $imageUrl
    */
-  public function setMobileImageName(string $imageName): void
+  public function setMobileImageUrl(string $imageUrl): void
   {
-    $this->mobileImageName = $imageName;
+    $this->mobileImageUrl = $imageUrl;
   }
 
   /**
@@ -196,5 +203,23 @@ class MkResponsiveSlide
   public function setDescription($description): void
   {
     $this->description = $description;
+  }
+  
+  /**
+   * @return bool
+   */
+  public function isTextVisible(): bool
+  {
+    return $this->textVisible;
+  }
+
+  public function showText(): void
+  {
+    $this->textVisible = true;
+  }
+
+  public function hideText(): void
+  {
+    $this->textVisible = false;
   }
 }
