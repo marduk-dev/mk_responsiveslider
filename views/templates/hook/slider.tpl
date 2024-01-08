@@ -31,5 +31,5 @@
     </button>
   </div>
 {else}
-  <h2>slides: {$mk_slider.slides}</h2>
+  <h2 d-hidden>{l s='No slides available' js=1 d='Modules.Mkresponsiveslider.Slider'}</h2>
 {/if}
