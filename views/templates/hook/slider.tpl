@@ -8,7 +8,7 @@
     <div class="carousel-inner">
     {foreach from=$mk_slider.slides item=slide key=idxSlide name='mk_slider'}
       <div class="carousel-item{if $idxSlide == 0} active{/if}">
-      {if !empty($slide.url)}<a href="{$slide.url}">{/if}
+      {if !empty($slide.url)}<a href="{$slide.url}"{if $slide.open_url_in_new_window} target="_blank"{/if}>{/if}
         <img src="{$slide.desktop_img}" class="d-block w-100 desktop" alt="{$slide.legend|escape}" loading="lazy">
         <img src="{$slide.mobile_img}" class="d-block w-100 mobile" alt="{$slide.legend|escape}" loading="lazy">
         {if ($slide.is_text_visible) && ($slide.title || $slide.description)}

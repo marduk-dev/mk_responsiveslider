@@ -6,7 +6,6 @@ namespace Marduk\Module\Mk_ResponsiveSlider\Presentation;
 
 use Marduk\Module\Mk_ResponsiveSlider\Entity\MkResponsiveSlide;
 use Marduk\Module\Mk_ResponsiveSlider\Repository\MkResponsiveSlideRepository;
-use Marduk\Module\Mk_ResponsiveSlider\Helpers\FileHelper;
 
 class SlideView {
 
@@ -19,6 +18,8 @@ class SlideView {
   const SlideDesktopImg = 'desktop_img';
   const SlideMobileImg = 'mobile_img';
   const SlideLegend = 'legend';
+  const SlideLinkUrl = 'url';
+  const SlideLinkNewWindow = 'open_url_in_new_window';
 
   private MkResponsiveSlideRepository $repository;
   public function __construct(MkResponsiveSlideRepository $repository)
@@ -50,6 +51,8 @@ class SlideView {
       static::SlideLegend => $slide->getTitle(),
       static::SlideDesktopImg => $slide->getDesktopImageUrl(),
       static::SlideMobileImg => $slide->getMobileImageUrl(),
+      static::SlideLinkUrl => $slide->getLinkUrl(),
+      static::SlideLinkNewWindow => true,
     ];
   }
 }
